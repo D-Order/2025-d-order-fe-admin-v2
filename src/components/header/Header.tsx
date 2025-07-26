@@ -4,10 +4,17 @@ import { useState } from "react";
 
 import { IMAGE_CONSTANTS } from "@constants/imageConstants";
 import useBoothRevenue from "./hooks/useBoothRevenue";
-
+import Bell from "./_components/Bell";
 const Header = () => {
   const [isReloading, setIsReloading] = useState(false);
   const { boothName, totalRevenues, error } = useBoothRevenue();
+
+  // 알림 테스트용 state
+  const [bellActive, setBellActive] = useState(true);
+  // 알림 토글 함수 (테스트용)
+  const handleBellClick = () => {
+    setBellActive((prev) => !prev);
+  };
 
   const handleReload = () => {
     if (isReloading) return;
@@ -31,6 +38,9 @@ const Header = () => {
         <S.TotalSales>
           {error ? "0원" : `${formatCurrency(totalRevenues)}원`}
         </S.TotalSales>
+
+        <Bell active={bellActive} onClick={handleBellClick} />
+
         <S.ReloadButton onClick={handleReload} disabled={isReloading}>
           <S.ReloadIcon
             src={IMAGE_CONSTANTS.RELOAD}
