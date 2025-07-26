@@ -15,6 +15,8 @@ import LiveOrderPage from "@pages/liveOrder/LiveOrderPage";
 import TableViewPage from "@pages/tableView/TableViewPage";
 import MyPage from "@pages/mypage/MyPage";
 import MenuPage from "@pages/menu/MenuPage";
+import CouponPage from "@pages/coupon/CouponPage";
+import DashboardPage from "@pages/dashboard/DashboardPage";
 import { ROUTE_PATHS } from "@constants/routeConstants";
 
 // GA 추적을 위한 래퍼 컴포넌트
@@ -35,6 +37,8 @@ const router = createBrowserRouter([
       { path: ROUTE_PATHS.TABLE_VIEW, element: <TableViewPage /> },
       { path: ROUTE_PATHS.MYPAGE, element: <MyPage /> },
       { path: ROUTE_PATHS.MENU, element: <MenuPage /> },
+      { path: ROUTE_PATHS.COUPON, element: <CouponPage /> },
+      { path: ROUTE_PATHS.DASHBOARD, element: <DashboardPage /> },
     ],
   },
   {

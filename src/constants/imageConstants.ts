@@ -18,6 +18,12 @@ import Nav_menu from "../assets/icons/navMenu.svg";
 import Nav_menu_active from "../assets/icons/navMenuActive.svg";
 import Nav_my from "../assets/icons/navMy.svg";
 import Nav_my_active from "../assets/icons/navMyActive.svg";
+import Nav_coupon from "../assets/icons/navCoupon.svg";
+import Nav_coupon_active from "../assets/icons/navCouponActive.svg";
+import Nav_dashboard from "../assets/icons/navDashboard.svg";
+import Nav_dashboard_active from "../assets/icons/navDashboardActive.svg";
+
+import Bell from "../assets/icons/bell.svg";
 import ReloadWhite from "../assets/icons/reloadWhite.svg";
 import BtnCheck from "../assets/icons/btnCheck.svg";
 import BtnPlus from "../assets/icons/btnPlus.svg";
@@ -64,7 +70,12 @@ export const IMAGE_CONSTANTS = {
   NAV_MENU_ACTIVE: Nav_menu_active,
   NAV_MY: Nav_my,
   NAV_MY_ACTIVE: Nav_my_active,
+  NAV_COUPON: Nav_coupon,
+  NAV_COUPON_ACTIVE: Nav_coupon_active,
+  NAV_DASHBOARD: Nav_dashboard,
+  NAV_DASHBOARD_ACTIVE: Nav_dashboard_active,
 
+  BELL: Bell,
   BACKWARD_BLACK: BackWard_Black,
   Delete: Delete,
   BTNCHECK: BtnCheck,

@@ -8,7 +8,7 @@ export const SideBarWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 92px;
-  height: 295px;
+  height: 396px;
 
   border-radius: 0 16px 16px 0;
   box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.04);
