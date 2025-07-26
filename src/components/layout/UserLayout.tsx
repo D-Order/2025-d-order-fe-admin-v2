@@ -1,9 +1,9 @@
-import { Outlet } from 'react-router-dom';
-import styled from 'styled-components';
-import useRedirectIfLoggedIn from '@hooks/useLoggedInRedirect';
+import { Outlet } from "react-router-dom";
+import styled from "styled-components";
+import useAuthRedirect from "@hooks/useAuthRedirect";
 
 const UserLayout = () => {
-  useRedirectIfLoggedIn();
+  useAuthRedirect();
   return (
     <Wrapper>
       <Background>
