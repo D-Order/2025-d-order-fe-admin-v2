@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import useAuthRedirect from "@hooks/useAuthRedirect";
+// import useAuthRedirect from "@hooks/useAuthRedirect";
 
 const UserLayout = () => {
-  useAuthRedirect();
+  // useAuthRedirect();
   return (
     <Wrapper>
       <Background>
