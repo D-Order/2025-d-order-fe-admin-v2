@@ -46,11 +46,25 @@ const SideBar = () => {
           alt="menu"
         />
         <NavItem
+          icon={IMAGE_CONSTANTS.NAV_COUPON}
+          activeIcon={IMAGE_CONSTANTS.NAV_COUPON_ACTIVE}
+          isActive={activeNav === ROUTE_PATHS.COUPON}
+          onClick={() => handleNavClick(ROUTE_PATHS.COUPON)}
+          alt="coupon"
+        />
+        <NavItem
           icon={IMAGE_CONSTANTS.NAV_MY}
           activeIcon={IMAGE_CONSTANTS.NAV_MY_ACTIVE}
           isActive={activeNav === ROUTE_PATHS.MYPAGE}
           onClick={() => handleNavClick(ROUTE_PATHS.MYPAGE)}
           alt="my"
+        />
+        <NavItem
+          icon={IMAGE_CONSTANTS.NAV_DASHBOARD}
+          activeIcon={IMAGE_CONSTANTS.NAV_DASHBOARD_ACTIVE}
+          isActive={activeNav === ROUTE_PATHS.DASHBOARD}
+          onClick={() => handleNavClick(ROUTE_PATHS.DASHBOARD)}
+          alt="dashboard"
         />
       </S.NavWrapper>
     </S.SideBarWrapper>

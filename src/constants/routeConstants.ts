@@ -6,4 +6,6 @@ export const ROUTE_PATHS = {
   TABLE_VIEW: "/table-view",
   MYPAGE: "/mypage",
   MENU: "/menu",
+  COUPON: "/coupon",
+  DASHBOARD: "/dashboard",
 };
