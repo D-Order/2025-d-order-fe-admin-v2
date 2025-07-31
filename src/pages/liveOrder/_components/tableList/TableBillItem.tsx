@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import OrderStateBtn from "../OrderStateBtn";
-import { OrderItem } from "../../api/LiveOrderService";
+//import { OrderItem } from "../../api/LiveOrderService";
+import { OrderItem } from "../../dummy/DummyLiveOrderService";
 import { IMAGE_CONSTANTS } from "@constants/imageConstants";
 
 interface TableBillItemProps {
