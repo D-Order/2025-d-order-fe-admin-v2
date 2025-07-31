@@ -196,6 +196,10 @@ const PaymentInfoForm = ({
               setAccountNumberError(null);
               setAccountNumberSuccess(null);
             }}
+            onResetValidation={() => {
+              setAccountNumberError(null);
+              setAccountNumberSuccess(null);
+            }}
           />
           <NextButton
             onClick={() => setPaymentStage(2)}
@@ -227,6 +231,10 @@ const PaymentInfoForm = ({
               setPwError(null);
               setPwSuccess(null);
             }}
+            onResetValidation={() => {
+              setPwError(null);
+              setPwSuccess(null);
+            }}
             isVisible={paymentStage >= 2}
             disabled={paymentStage !== 2}
           />
@@ -246,6 +254,9 @@ const PaymentInfoForm = ({
             helperText="동일한 비밀번호를 입력해 주세요."
             onClear={() => {
               onChange('confirmPaymentPasswordCheck', '');
+              setPwCheckError(null);
+            }}
+            onResetValidation={() => {
               setPwCheckError(null);
             }}
             forceShowPasswordWhenSuccess

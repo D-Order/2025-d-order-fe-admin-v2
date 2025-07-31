@@ -1,8 +1,8 @@
-import * as S from "./UserInfoForm.styled";
-import { instance } from "@services/instance";
-import { useState, useEffect, useCallback } from "react";
-import CommonInput from "../inputs/CommonInput";
-import NextButton from "../buttons/NextButton";
+import * as S from './UserInfoForm.styled';
+import { instance } from '@services/instance';
+import { useState, useEffect, useCallback } from 'react';
+import CommonInput from '../inputs/CommonInput';
+import NextButton from '../buttons/NextButton';
 
 const isValidIdFormat = (id: string) => /^[a-z0-9]{6,12}$/.test(id);
 const isValidPasswordFormat = (pw: string) =>
@@ -10,7 +10,7 @@ const isValidPasswordFormat = (pw: string) =>
 
 const checkDuplicateId = async (id: string): Promise<boolean> => {
   try {
-    const response = await instance.get("/api/manager/check/", {
+    const response = await instance.get('/api/manager/check/', {
       params: { username: id },
     });
     return response.data.data.is_available;
@@ -25,7 +25,7 @@ type Props = {
     password: string;
     confirmPassword: string;
   };
-  onChange: (key: keyof Props["formData"], value: string) => void;
+  onChange: (key: keyof Props['formData'], value: string) => void;
   onNext: () => void;
   userStage: number;
   setUserStage: React.Dispatch<React.SetStateAction<number>>;
@@ -68,30 +68,30 @@ const UserInfoForm = ({
 
   const handleIdCheck = useCallback(
     async (e: React.KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         e.preventDefault();
         setIdError(null);
         setIdSuccess(null);
 
         if (!userId) {
-          setIdError("아이디를 입력해 주세요.");
+          setIdError('아이디를 입력해 주세요.');
           return;
         }
 
         if (!isValidIdFormat(userId)) {
-          setIdError("6~12자 이내의 영문 소문자, 숫자를 입력해 주세요.");
+          setIdError('6~12자 이내의 영문 소문자, 숫자를 입력해 주세요.');
           return;
         }
 
         try {
           const available = await checkDuplicateId(userId);
           if (available) {
-            setIdSuccess("사용 가능한 아이디예요.");
+            setIdSuccess('사용 가능한 아이디예요.');
           } else {
-            setIdError("이미 존재하는 아이디예요.");
+            setIdError('이미 존재하는 아이디예요.');
           }
         } catch {
-          setIdError("중복 확인 중 오류가 발생했습니다.");
+          setIdError('중복 확인 중 오류가 발생했습니다.');
         }
       }
     },
@@ -100,22 +100,22 @@ const UserInfoForm = ({
 
   const handlePasswordCheck = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         e.preventDefault();
         setPwError(null);
         setPwSuccess(null);
 
         if (!password) {
-          setPwError("비밀번호를 입력해 주세요.");
+          setPwError('비밀번호를 입력해 주세요.');
           return;
         }
 
         if (!isValidPasswordFormat(password)) {
-          setPwError("4~20자 이내의 영문, 숫자, 특수문자를 입력해 주세요.");
+          setPwError('4~20자 이내의 영문, 숫자, 특수문자를 입력해 주세요.');
           return;
         }
 
-        setPwSuccess("사용 가능한 비밀번호예요.");
+        setPwSuccess('사용 가능한 비밀번호예요.');
       }
     },
     [password]
@@ -123,22 +123,22 @@ const UserInfoForm = ({
 
   const handleConfirmPasswordCheck = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         e.preventDefault();
         setConfirmPwError(null);
         setConfirmPwSuccess(null);
 
         if (!confirmPassword) {
-          setConfirmPwError("비밀번호 확인을 입력해 주세요.");
+          setConfirmPwError('비밀번호 확인을 입력해 주세요.');
           return;
         }
 
         if (password !== confirmPassword) {
-          setConfirmPwError("비밀번호가 일치하지 않아요.");
+          setConfirmPwError('비밀번호가 일치하지 않아요.');
           return;
         }
 
-        setConfirmPwSuccess("비밀번호가 일치해요.");
+        setConfirmPwSuccess('비밀번호가 일치해요.');
       }
     },
     [password, confirmPassword]
@@ -156,7 +156,7 @@ const UserInfoForm = ({
         placeholder="예) dorder2025"
         value={userId}
         onChange={(e) => {
-          onChange("userId", e.target.value);
+          onChange('userId', e.target.value);
           setIdError(null);
           setIdSuccess(null);
         }}
@@ -165,7 +165,11 @@ const UserInfoForm = ({
         success={idSuccess ?? undefined}
         helperText="6~12자 이내의 영문 소문자, 숫자를 입력해 주세요."
         onClear={() => {
-          onChange("userId", "");
+          onChange('userId', '');
+          setIdError(null);
+          setIdSuccess(null);
+        }}
+        onResetValidation={() => {
           setIdError(null);
           setIdSuccess(null);
         }}
@@ -179,7 +183,7 @@ const UserInfoForm = ({
         type="password"
         value={password}
         onChange={(e) => {
-          onChange("password", e.target.value);
+          onChange('password', e.target.value);
           setPwError(null);
           setPwSuccess(null);
         }}
@@ -188,7 +192,11 @@ const UserInfoForm = ({
         success={pwSuccess ?? undefined}
         helperText="4~20자 이내의 영문, 숫자, 특수문자를 입력해 주세요."
         onClear={() => {
-          onChange("password", "");
+          onChange('password', '');
+          setPwError(null);
+          setPwSuccess(null);
+        }}
+        onResetValidation={() => {
           setPwError(null);
           setPwSuccess(null);
         }}
@@ -202,7 +210,7 @@ const UserInfoForm = ({
         type="password"
         value={confirmPassword}
         onChange={(e) => {
-          onChange("confirmPassword", e.target.value);
+          onChange('confirmPassword', e.target.value);
           setConfirmPwError(null);
           setConfirmPwSuccess(null);
         }}
@@ -211,7 +219,11 @@ const UserInfoForm = ({
         success={confirmPwSuccess ?? undefined}
         helperText="비밀번호를 동일하게 입력해 주세요."
         onClear={() => {
-          onChange("confirmPassword", "");
+          onChange('confirmPassword', '');
+          setConfirmPwError(null);
+          setConfirmPwSuccess(null);
+        }}
+        onResetValidation={() => {
           setConfirmPwError(null);
           setConfirmPwSuccess(null);
         }}
