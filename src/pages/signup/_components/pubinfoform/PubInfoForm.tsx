@@ -2,6 +2,7 @@ import * as S from './PubInfoForm.styled';
 import { useState, useCallback } from 'react';
 import CommonInput from '../inputs/CommonInput';
 import NextButton from '../buttons/NextButton';
+import CommonDropdown from '../inputs/dropdown/CommonDropdown';
 import SelectBoxInput from '../inputs/selectbutton/SelectButton';
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
     tableCount: string;
     tableFee: string;
     tableFeePolicy: string;
+    maxTime: string;
   };
   onChange: (key: keyof Props['formData'], value: string) => void;
   onNext: () => void;
@@ -178,7 +180,31 @@ const PubInfoForm = ({
             options={feePolicyOptions}
           />
 
-          <NextButton disabled={!isSecondValid} onClick={onNext}>
+          <NextButton disabled={!isSecondValid} onClick={() => setPubStage(3)}>
+            다음
+          </NextButton>
+        </>
+      )}
+
+      {pubStage === 3 && (
+        <>
+          <CommonDropdown
+            label="최대 이용 가능 시간"
+            placeholder="시간 선택"
+            value={formData.maxTime}
+            onChange={(e) => onChange('maxTime', e.target.value)}
+            options={['60', '90', '120', '150', '180']}
+            optionLabelMap={{
+              '60': '1시간',
+              '90': '1시간 30분',
+              '120': '2시간',
+              '150': '2시간 30분',
+              '180': '3시간',
+              '210': '3시간 30분',
+            }}
+          />
+
+          <NextButton disabled={!formData.maxTime} onClick={onNext}>
             다음
           </NextButton>
         </>
