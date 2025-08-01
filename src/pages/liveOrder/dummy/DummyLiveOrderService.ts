@@ -2,7 +2,7 @@
 
 // UI에서 사용할 주문 항목 인터페이스 (LiveOrderService와 동일하게 유지)
 export interface OrderItem {
-  id?: number;
+  id: number;
   time: string;
   table: string;
   menu: string;
@@ -52,65 +52,65 @@ export interface OrderUpdateResponse {
 // =======================================================
 // 더미 데이터 정의
 // =======================================================
-import pizza from "@assets/images/Pizza.svg";
+import pizza from '@assets/images/Pizza.svg';
 // 임시 주문 데이터 저장소 (메모리에서 관리)
 let dummyOrders: Order[] = [
   {
     id: 1,
-    menu_name: "아이스 아메리카노",
+    menu_name: '아이스 아메리카노',
     menu_price: 4500,
     menu_num: 2,
-    order_status: "order_received",
+    order_status: 'order_received',
     created_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(), // 5분 전
     table_num: 1,
     menu_image: `${pizza}`,
   },
   {
     id: 2,
-    menu_name: "치즈 케이크",
+    menu_name: '치즈 케이크',
     menu_price: 6000,
     menu_num: 1,
-    order_status: "order_received",
+    order_status: 'order_received',
     created_at: new Date(Date.now() - 4 * 60 * 1000).toISOString(), // 4분 전
     table_num: 1,
     menu_image: `${pizza}`,
   },
   {
     id: 3,
-    menu_name: "카페 라떼",
+    menu_name: '카페 라떼',
     menu_price: 5000,
     menu_num: 1,
-    order_status: "order_received",
+    order_status: 'order_received',
     created_at: new Date(Date.now() - 3 * 60 * 1000).toISOString(), // 3분 전
     table_num: 2,
     menu_image: `${pizza}`,
   },
   {
     id: 4,
-    menu_name: "샌드위치",
+    menu_name: '샌드위치',
     menu_price: 7500,
     menu_num: 1,
-    order_status: "order_received",
+    order_status: 'order_received',
     created_at: new Date(Date.now() - 2 * 60 * 1000).toISOString(), // 2분 전
     table_num: 3,
     menu_image: `${pizza}`,
   },
   {
     id: 5,
-    menu_name: "초코 머핀",
+    menu_name: '초코 머핀',
     menu_price: 3500,
     menu_num: 2,
-    order_status: "order_received",
+    order_status: 'order_received',
     created_at: new Date(Date.now() - 1 * 60 * 1000).toISOString(), // 1분 전
     table_num: 2,
     menu_image: `${pizza}`,
   },
   {
     id: 6,
-    menu_name: "과일 주스",
+    menu_name: '과일 주스',
     menu_price: 6000,
     menu_num: 1,
-    order_status: "served_complete", // 이미 서빙 완료된 주문
+    order_status: 'served_complete', // 이미 서빙 완료된 주문
     created_at: new Date(Date.now() - 10 * 60 * 1000).toISOString(), // 10분 전
     table_num: 4,
     menu_image: `${pizza}`,
@@ -134,8 +134,8 @@ class DummyLiveOrderService {
 
         // API 응답 형식에 맞춰 데이터 반환
         resolve({
-          status: "success",
-          message: "주문 목록을 성공적으로 가져왔습니다.",
+          status: 'success',
+          message: '주문 목록을 성공적으로 가져왔습니다.',
           code: 200,
           data: {
             total_revenue: totalRevenue,
@@ -163,18 +163,18 @@ class DummyLiveOrderService {
         );
 
         if (orderIndex === -1) {
-          reject(new Error("Order not found")); // 주문을 찾을 수 없는 경우 에러 반환
+          reject(new Error('Order not found')); // 주문을 찾을 수 없는 경우 에러 반환
           return;
         }
 
         const updatedOrder = {
           ...dummyOrders[orderIndex],
-          order_status: "served_complete",
+          order_status: 'served_complete',
         };
         dummyOrders[orderIndex] = updatedOrder; // 더미 데이터 업데이트
 
         resolve({
-          status: "success",
+          status: 'success',
           message: `주문 ${orderId}의 상태가 서빙 완료로 업데이트되었습니다.`,
           code: 200,
           data: {

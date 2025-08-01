@@ -1,14 +1,15 @@
-import styled from "styled-components";
-import { IMAGE_CONSTANTS } from "@constants/imageConstants";
+import styled from 'styled-components';
+import { IMAGE_CONSTANTS } from '@constants/imageConstants';
 
-import TableBillItem from "./TableBillItem";
+import TableBillItem from './TableBillItem';
 //import { OrderItem } from "../../api/LiveOrderService";
-import { OrderItem } from "../../dummy/DummyLiveOrderService";
+import { OrderItem } from '../../dummy/DummyLiveOrderService';
 interface TableBillProps {
   tableNumber: string;
   orderTime: string;
   orderItems: OrderItem[];
   onOrderStatusChange?: (tableIndex: string, menuIndex: number) => void;
+  getFadingStatus: (id: number) => boolean;
 }
 
 const TableBill = ({
@@ -16,6 +17,7 @@ const TableBill = ({
   orderTime,
   orderItems,
   onOrderStatusChange,
+  getFadingStatus,
 }: TableBillProps) => {
   // 주문 상태 변경 핸들러
   const handleOrderStatusChangeForBillItem = (
@@ -43,6 +45,7 @@ const TableBill = ({
           <TableBillItem
             orderItems={orderItems}
             onOrderStatusChange={handleOrderStatusChangeForBillItem}
+            getFadingStatus={getFadingStatus}
           />
         </TableBillItemWrapper>
       </TableBillContents>
