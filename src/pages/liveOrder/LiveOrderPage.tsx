@@ -1,8 +1,8 @@
-import * as S from "./LiveOrderPage.styled";
-import LiveOrderMenuList from "./_components/menuList/LiveOrderMenuList";
-import LiveOrderTableList from "./_components/tableList/LiveOrderTableList";
+import * as S from './LiveOrderPage.styled';
+import LiveOrderMenuList from './_components/menuList/LiveOrderMenuList';
+import LiveOrderTableList from './_components/tableList/LiveOrderTableList';
 
-import { useLiveOrdersData } from "./hooks/useLiveOrdersData"; // 새롭게 생성된 훅 임포트
+import { useLiveOrdersData } from './hooks/useLiveOrdersData'; // 새롭게 생성된 훅 임포트
 
 const LiveOrderPage = () => {
   const {
@@ -41,6 +41,7 @@ const LiveOrderPage = () => {
             isLoading={isLoading}
             getFadingStatus={getFadingTableBillStatus} // 테이블의 페이드 상태를 얻는 함수
             getEarliestOrderTime={getEarliestOrderTime} // 테이블별 가장 빠른 주문 시간을 얻는 함수
+            getFadingMenuItemStatus={getFadingMenuItemStatus}
           />
         </>
       )}
