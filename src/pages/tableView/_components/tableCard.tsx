@@ -1,3 +1,4 @@
+// 2025-d-order-fe-admin-v2/src/pages/tableView/_components/tableCard.tsx
 import * as S from './tableComponents.styled';
 import { TABLEPAGE_CONSTANTS } from '../_constants/tableConstants';
 
