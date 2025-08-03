@@ -10,6 +10,8 @@ interface TableCardData {
         menu: string;
         quantity: number;
     }[];
+    isOverdue: boolean; // ✅ 추가
+
 }
 
 interface Props {
@@ -18,8 +20,8 @@ interface Props {
 
 const TableCard: React.FC<Props> = ({ data }) => {
     return (
-        <S.CardWrapper>
-        <S.TableInfo>
+        <S.CardWrapper $isOverdue={data.isOverdue}>
+        <S.TableInfo $isOverdue={data.isOverdue}>
             <p className="tableNumber">테이블 {data.tableNumber}</p>
             <p className="orderTime">{data.orderedAt}</p>
         </S.TableInfo>

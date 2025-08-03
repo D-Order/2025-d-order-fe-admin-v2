@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 
-export const CardWrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.Gray01};
+export const CardWrapper = styled.div<{ $isOverdue: boolean }>`
+  background-color: ${({ theme, $isOverdue }) =>
+    $isOverdue ? theme.colors.Point : theme.colors.Gray01};  
   color: ${({ theme }) => theme.colors.Black01};
   width: 8.5rem;
   height: 11.5rem;
@@ -31,7 +32,7 @@ export const CardWrapper = styled.div`
 `;
 
 
-export const TableInfo = styled.div`
+export const TableInfo = styled.div<{ $isOverdue: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -41,27 +42,34 @@ export const TableInfo = styled.div`
     font-size: 0.8rem;
     font-weight: 700;
     ${({ theme }) => css(theme.fonts.Bold14)};
-
-    @media (min-width: 1366px) {
+    @media (min-width: 1180px) {
       font-size: 1rem;
     }
+    @media (min-width: 1366px) {
+      font-size: 1.2rem;
+    }
+    
   }
   .orderTime {
     font-size: 0.6rem;
     font-weight: 600;
-    color: ${({ theme }) => theme.colors.Focused};
+    color: ${({ theme, $isOverdue }) =>
+    $isOverdue ? theme.colors.Orange01 : theme.colors.Black01};  ;
     ${({ theme }) => css(theme.fonts.SemiBold12)};
-
-    @media (min-width: 1366px) {
-      font-size: 0.7rem;
+    @media (min-width: 1180px) {
+      font-size: 0.8rem;
     }
+    @media (min-width: 1366px) {
+      font-size: 0.9rem;
+    }
+    
   }
 `;
 
 export const DivideLine = styled.div`
   width: 100%;
   height: 0.5px;
-  background-color: #f2f2f2;
+  background-color: rgba(192, 192, 192, 0.50);
   border-bottom: 1px solid #c0c0c0;
 `;
 
@@ -71,10 +79,11 @@ export const MenuList = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
+  
   img {
     width: 100%;
   }
+  
 `;
 
 export const MenuItem = styled.div`
@@ -87,11 +96,23 @@ export const MenuItem = styled.div`
   .menuName {
     font-size: 0.75rem;
     ${({ theme }) => css(theme.fonts.Bold12)};
+    @media (min-width: 1180px) {
+      font-size: 0.8rem;
+    }
+    @media (min-width: 1366px) {
+      font-size: 0.9rem;
+    }
   }
   .menuAmount {
     font-size: 0.75rem;
     ${({ theme }) => css(theme.fonts.Medium12)};
     font-weight: 500;
+    @media (min-width: 1180px) {
+      font-size: 0.8rem;
+    }
+    @media (min-width: 1366px) {
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -103,8 +124,14 @@ export const ToDetail = styled.div`
   color: ${({ theme }) => theme.colors.Orange01};
   font-size: 0.6rem;
   font-weight: 600;
-  padding: 0.2rem 0;
+  padding: 0.4rem 0 0 0;
   ${({ theme }) => css(theme.fonts.SemiBold10)};
+  @media (min-width: 1180px) {
+      font-size: 0.7rem;
+    }
+    @media (min-width: 1366px) {
+      font-size: 0.8rem;
+    }
 `;
 
 export const TotalPrice = styled.div`
@@ -119,6 +146,12 @@ export const TotalPrice = styled.div`
     font-size: 0.75rem;
     font-weight: 700;
     ${({ theme }) => css(theme.fonts.Bold12)};
+    @media (min-width: 1180px) {
+      font-size: 0.8rem;
+    }
+    @media (min-width: 1366px) {
+      font-size: 0.9rem;
+    }
   }
 `;
 

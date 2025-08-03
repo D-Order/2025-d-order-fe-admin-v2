@@ -18,6 +18,8 @@ interface TableOrder {
     menu: string;
     quantity: number;
   }[];
+  isOverdue: boolean; // ✅ 추가
+
 }
 
 const mapToTableOrder = (item: TableItem): TableOrder => ({
@@ -33,6 +35,8 @@ const mapToTableOrder = (item: TableItem): TableOrder => ({
     menu: order.menu_name,
     quantity: order.menu_num,
   })),
+  isOverdue: item.is_overdue, // ✅ 전달
+
 });
 
 const TableViewGrid: React.FC<Props> = ({ tableList, onSelectTable }) => {
