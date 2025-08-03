@@ -1,3 +1,4 @@
+// 2025-d-order-fe-admin-v2/src/pages/tableView/_components/tableGrid.tsx
 import { useState, useEffect } from "react";
 import * as S from "./tableComponents.styled";
 import { useSwipeable } from "react-swipeable";
@@ -17,6 +18,8 @@ interface TableOrder {
     menu: string;
     quantity: number;
   }[];
+  isOverdue: boolean; // ✅ 추가
+
 }
 
 const mapToTableOrder = (item: TableItem): TableOrder => ({
@@ -32,43 +35,50 @@ const mapToTableOrder = (item: TableItem): TableOrder => ({
     menu: order.menu_name,
     quantity: order.menu_num,
   })),
+  isOverdue: item.is_overdue, // ✅ 전달
+
 });
 
 const TableViewGrid: React.FC<Props> = ({ tableList, onSelectTable }) => {
-  const [page, setPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(15);
-  const [columns, setColumns] = useState(5);
+const [page, setPage] = useState(0);
+  // const [itemsPerPage, setItemsPerPage] = useState(15);
+  // const [columns, setColumns] = useState(5);
+  // const [columns, setColumns] = useState(5);
+  // const mappedData = tableList.map((item) => ({
+  //   original: item,
+  //   viewData: mapToTableOrder(item),
+  // }));
 
+  // useEffect(() => {
+  // const handleResize = () => {
+  //   const width = window.innerWidth;
+  //   if (width >= 1366) {
+  //     setColumns(7);
+  //   } else if (width >= 1180) {
+  //     setColumns(6);
+  //   } else {
+  //     setColumns(5);
+  //   }
+  // };
+
+  //   handleResize();
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
   const mappedData = tableList.map((item) => ({
     original: item,
     viewData: mapToTableOrder(item),
   }));
-
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width >= 1366) {
-        setItemsPerPage(28);
-        setColumns(7);
-      } else if (width >= 1180) {
-        setItemsPerPage(18);
-        setColumns(6);
-      } else {
-        setItemsPerPage(15);
-        setColumns(5);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const totalPages = Math.ceil(mappedData.length / itemsPerPage);
-  const currentItems = mappedData.slice(
-    page * itemsPerPage,
-    (page + 1) * itemsPerPage
-  );
+  // const totalPages = Math.ceil(mappedData.length / itemsPerPage);
+  // const currentItems = mappedData.slice(
+  //   page * itemsPerPage,
+  //   (page + 1) * itemsPerPage
+const itemsPerPage = 15;
+const totalPages = Math.ceil(mappedData.length / itemsPerPage);
+const currentItems = mappedData.slice(
+  page * itemsPerPage,
+  (page + 1) * itemsPerPage
+);
 
   const handlePrev = () => {
     setPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
@@ -87,14 +97,12 @@ const TableViewGrid: React.FC<Props> = ({ tableList, onSelectTable }) => {
 
   return (
     <S.GridWrapper {...handlers}>
-      <S.GridView $columns={columns}>
+      <S.GridView>
         {currentItems.map(({ original, viewData }) => (
           <div key={original.table_num} onClick={() => onSelectTable(original)}>
             <TableCard data={viewData} />
           </div>
-          // <div key={table.table_num} onClick={() => onSelectTable(table)}>
-          // <TableCard data={mapToTableOrder(table)} />
-          // </div>
+          
         ))}
       </S.GridView>
 

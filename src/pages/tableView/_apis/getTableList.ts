@@ -17,6 +17,8 @@ export interface TableItem {
         menu_num: number;
         order_status: string;
     }[];
+    is_overdue: boolean; // ✅ 추가
+
 }
 
 export interface TableListResponse {
